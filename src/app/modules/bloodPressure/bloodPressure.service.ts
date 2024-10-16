@@ -56,8 +56,8 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
 
     if (
       Number(bloodPressureData.data) > 100 ||
-      bloodPressureData.systolic > 130 ||
-      bloodPressureData.diastolic > 85
+      bloodPressureData.systolic >= 130 ||
+      bloodPressureData.diastolic >= 85
     ) {
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
@@ -86,8 +86,8 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
     //pressure is high, call your doctor and check it again at rest in 2 hours”
     else if (
       Number(bloodPressureData.data) > 106.7 ||
-      bloodPressureData.systolic > 140 ||
-      bloodPressureData.diastolic > 190
+      bloodPressureData.systolic >= 140 ||
+      bloodPressureData.diastolic >= 190
     ) {
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
@@ -115,8 +115,8 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
     //pressure severely high, immediately call your doctor”
     else if (
       Number(bloodPressureData.data) > 126.7 ||
-      bloodPressureData.systolic > 160 ||
-      bloodPressureData.diastolic > 110
+      bloodPressureData.systolic >= 160 ||
+      bloodPressureData.diastolic >= 110
     ) {
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
