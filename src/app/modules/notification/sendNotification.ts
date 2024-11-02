@@ -1,18 +1,8 @@
 import admin from "firebase-admin";
 import httpStatus from "http-status";
+import file from "../../../public/clinica-b05e8-firebase-admin-sdk.json";
 import AppError from "../../errors/AppError";
 import NotificationModel from "./notification.model";
-import config from "../../config";
-import file from "../../../public/clinica-b05e8-firebase-admin-sdk.json";
-// Initialize Firebase Admin with a service account
-
-//const configPath = path.join(process.cwd(), "clinica-b05e8-firebase-admin-sdk.json");
-
-//const firebaseConfig: admin.ServiceAccount = {
-//  clientEmail: config.firebase.client_email,
-//  privateKey: config.firebase.private_key,
-//  projectId: config.firebase.project_id,
-//};
 
 admin.initializeApp({
   credential: admin.credential.cert(file as any),
