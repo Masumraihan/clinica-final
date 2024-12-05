@@ -30,17 +30,15 @@ const initializeSocketIO = (server: HttpServer) => {
       //----------------------user token get from front end-------------------------//
       const token = socket.handshake.auth?.token || socket.handshake.headers?.token;
       //----------------------check Token and return user details-------------------------//
-
       if (!token) {
-        throw new AppError(httpStatus.UNAUTHORIZED, "No token provided");
-        //return false;
+        //throw new AppError(httpStatus.UNAUTHORIZED, "No token provided");
+        console.log("no token provided");
+        return false;
       }
-
-      console.log({ token });
 
       let user: TTokenUser | null = null;
       try {
-        user = jwt.verify(token, config?.jwt_access_secret || "your_secret_key") as TTokenUser;
+        user = jwt.verify(token, config?.jwt_access_secret) as TTokenUser;
       } catch (error) {
         console.log(error);
         //throw new AppError(httpStatus.UNAUTHORIZED, "Invalid token");
@@ -93,15 +91,10 @@ const initializeSocketIO = (server: HttpServer) => {
         if (!receiverId) {
           callback({ success: false, message: "receiverId is required" });
         }
-
-        //console.log(receiverId, "receiverId");
-        //console.log(userData?._id, "userData?._id");
-
         try {
           const receiverDetails: TUser = await UserModel.findById(receiverId).select(
             "_id email role profilePicture name slug contact",
           );
-
           if (!receiverDetails) {
             callback({
               success: false,
@@ -152,6 +145,7 @@ const initializeSocketIO = (server: HttpServer) => {
         try {
           const chatList = await ChatListServices.getMyChatListFromDb(userData._id);
           const myChat = "chat-list::" + userData?._id;
+          console.log(chatList);
           socket.emit(myChat, { data: chatList });
           callback({ success: true, message: "Get chat list Successfully", data: chatList });
         } catch (error: any) {

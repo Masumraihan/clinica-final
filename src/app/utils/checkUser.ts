@@ -9,18 +9,19 @@ export const checkUser = async (token: string) => {
     const user = jwt.verify(token, config?.jwt_access_secret) as TTokenUser;
     const userData = await UserModel.findById(user._id);
     if (!userData) {
-      throw new AppError(httpStatus.NOT_FOUND, "User Not Found");
+      //throw new AppError(httpStatus.NOT_FOUND, "User Not Found");
     }
     if (!userData.isActive) {
-      throw new AppError(httpStatus.BAD_REQUEST, "Account is Blocked");
+      //throw new AppError(httpStatus.BAD_REQUEST, "Account is Blocked");
     }
     if (userData.isDelete) {
-      throw new AppError(httpStatus.BAD_REQUEST, "Account is Deleted");
+      //throw new AppError(httpStatus.BAD_REQUEST, "Account is Deleted");
     }
     if (!userData.validation?.isVerified) {
-      throw new AppError(httpStatus.BAD_REQUEST, "Your Account is not verified");
+      //throw new AppError(httpStatus.BAD_REQUEST, "Your Account is not verified");
     }
   } catch (error) {
-    throw new AppError(httpStatus.UNAUTHORIZED, "Invalid token");
+    //throw new AppError(httpStatus.UNAUTHORIZED, "Invalid token");
+    return null;
   }
 };

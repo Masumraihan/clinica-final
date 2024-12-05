@@ -17,7 +17,7 @@ async function main() {
     });
 
     io.listen(Number(config.socket_port));
-    console.log(`Socket is listening on port ${config.ip} : ${8003}`);
+    console.log(`Socket is listening on port ${config.ip} : ${config.socket_port}`);
     global.socketio = io;
   } catch (error) {
     console.log(error);
