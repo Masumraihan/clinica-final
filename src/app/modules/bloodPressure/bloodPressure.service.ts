@@ -61,7 +61,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
           title: "High Blood Pressure",
-          body: "you blood pressure is increasing, check it again at rest in 2 hours",
+          body: "your blood pressure is increasing, check it again at rest in 2 hours",
           type: "bloodPressure",
           userId: userData._id.toString(),
         });
@@ -71,7 +71,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
             //@ts-ignore
             sendNotification([doctor.doctor.fcmToken], {
               title: `${userData.name} High Blood Pressure`,
-              body: "you blood pressure is increasing, check it again at rest in 2 hours",
+              body: `${userData.name} blood pressure is increasing, check it again at rest in 2 hours`,
               type: "bloodPressure",
               userId: userData._id.toString(),
             });
@@ -91,7 +91,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
           title: "High Blood Pressure",
-          body: "you blood pressure is increasing, check it again at rest in 2 hours",
+          body: "your blood pressure is high, call your doctor and check it again at rest in 2 hours",
           type: "bloodPressure",
           userId: userData._id.toString(),
         });
@@ -100,7 +100,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
             //@ts-ignore
             sendNotification([doctor.doctor.fcmToken], {
               title: `${userData.name} High Blood Pressure`,
-              body: "you blood pressure is increasing, check it again at rest in 2 hours",
+              body: `${userData.name} blood pressure is increasing, check it again at rest in 2 hours`,
               type: "bloodPressure",
               userId: userData._id.toString(),
             });
@@ -120,7 +120,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
       if (userData.fcmToken) {
         sendNotification([userData.fcmToken], {
           title: "High Blood Pressure",
-          body: "you blood pressure is increasing, check it again at rest in 2 hours",
+          body: "your blood pressure severely high, immediately call your doctor",
           type: "bloodPressure",
           userId: userData._id.toString(),
         });
@@ -129,7 +129,7 @@ const createBloodPressureIntoDb = async (user: TTokenUser, payload: TBloodPressu
             //@ts-ignore
             sendNotification([doctor.doctor.fcmToken], {
               title: `${userData.name} High Blood Pressure`,
-              body: "you blood pressure is increasing, check it again at rest in 2 hours",
+              body: `${userData.name} blood pressure severely high, immediately call your doctor`,
               type: "bloodPressure",
               userId: userData._id.toString(),
             });
